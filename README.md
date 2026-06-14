@@ -7,7 +7,9 @@ An automated, high-frequency, anti-detection monitoring pipeline designed to tra
 The system operates on the core axiom that the target server’s internal update scheduler follows deterministic, discrete time-series waves ($W$). The closed-loop engine asserts that by calculating the historical progression of table generation gaps ($d_1, d_2$), the exact delta to the subsequent release wave ($T_{next}$) can be bounded and targeted.When an external factor introduces noise—such as regional content delivery network (CDN) caching latency or a local execution delay ($Lag_{capture}$)—the system establishes an error debt metric ($E_{debt}$). By applying this feedback loop directly as a proportional penalty modifier against the target pattern interval, the engine continuously recalibrates itself. 
 The engine measures the Data Age ($Age_{data}$) at the exact moment of text extraction. It compares this against a standardized Target Lateness Floor ($\tau = 2.0\text{ minutes}$). The moving average of this error over the last three runs creates our Proportional Error Debt ($E_{debt}$):
 
-This mathematically guarantees that the execution runtime will converge precisely with the server's update horizon:$$T_{run} \to T_{drop} \quad \text{as} \quad E_{debt} \to 0$$
+This mathematically guarantees that the execution runtime will converge precisely with the server's update horizon:
+
+$$T_{run} \to T_{drop} \quad \text{as} \quad E_{debt} \to 0$$
 
 $$E_{debt} = \left( \frac{1}{3} \sum_{i=1}^{3} Age_{data, i} \right) - \tau$$
 
