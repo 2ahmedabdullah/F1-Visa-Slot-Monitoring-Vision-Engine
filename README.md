@@ -9,7 +9,8 @@ Below are mobile screenshots demonstrating the pipeline in action. When a high-p
 
 
 ## 🛡️ The Claim
-### 1. 📉 Mathematical Proof of Convergence (Feedback Latency Loop)
+
+1. 📉 Mathematical Proof of Convergence (Feedback Latency Loop)
 The system operates on the core axiom that the target server’s internal update scheduler follows deterministic, discrete time-series waves ($W$). The closed-loop engine asserts that by calculating the historical progression of table generation gaps ($d_1, d_2$), the exact delta to the subsequent release wave ($T_{next}$) can be bounded and targeted.When an external factor introduces noise—such as regional content delivery network (CDN) caching latency or a local execution delay ($Lag_{capture}$)—the system establishes an error debt metric ($E_{debt}$). By applying this feedback loop directly as a proportional penalty modifier against the target pattern interval, the engine continuously recalibrates itself. 
 The engine measures the Data Age ($Age_{data}$) at the exact moment of text extraction. It compares this against a standardized Target Lateness Floor ($\tau = 2.0\text{ minutes}$). The moving average of this error over the last three runs creates our Proportional Error Debt ($E_{debt}$):
 
@@ -28,42 +29,34 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
 🛑 The Safety Valve Override ($E_{debt} \le 0$): If the script wakes up so fast that it runs before the server updates target_sleep_minutes_temp drops below 2.0 minutes. If the data isn't late, the engine activates its safety valve, expanding the sleep window out by exactly one full server cycle ($+next\_interval\_mins$) to dodge aggressive IP rate-limiting blocks.
 
 
-### 2. 🧊 The Anti-Entropy Claim (State Space Reset)
-The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
+2. 🧊 The Anti-Entropy Claim (State Space Reset): The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
 
 [Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]                           
                                                                                       │
-                [Scan Loop n+1] ◄─────────────────────────────────────────────────────┘
+                              [Scan Loop n+1] ◄───────────────────────────────────────┘
 
 
-### 3. ⚡Latency: 
-The entire pipeline executes 24x7 in under 20 seconds. It undergoes a rapid LLM Vision check; if the optimization logic confirms a bulk slot drop, it immediately triggers the laptop hardware alarm and simultaneously dispatches a priority notification to the user's personal Telegram.
+3.⚡Latency: The entire pipeline executes 24x7 in under 20 seconds. It undergoes a rapid LLM Vision check; if the optimization logic confirms a bulk slot drop, it immediately triggers the laptop hardware alarm and simultaneously dispatches a priority notification to the user's personal Telegram.
 
-### 4. 💰 Zero Fee: 
-Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Groq's high-speed API endpoints to process thousands of community interactions daily without premium SaaS subscription fees.
+4. 💰 Zero Fee: Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Groq's high-speed API endpoints to process thousands of community interactions daily without premium SaaS subscription fees.
 
-### 5. 🕞 24x7: 
-Engineered specifically to tackle sudden, high-stakes bulk drops that notoriously occur in the dead of night (2 AM, 3 AM, or later), this system acts as your tireless digital sentinel.
+5. 🕞 24x7: Engineered specifically to tackle sudden, high-stakes bulk drops that notoriously occur in the dead of night (2 AM, 3 AM, or later), this system acts as your tireless digital sentinel.
 
 
 
 ## ✨ Features
 
-### ⚡ LPU-Accelerated Table OCR: 
-Drop-in vision engine using meta-llama/llama-4-scout-17b-16e-instruct over Groq Cloud to extract text structures natively to JSON arrays without regex string degradation.
+⚡ LPU-Accelerated Table OCR: Drop-in vision engine using meta-llama/llama-4-scout-17b-16e-instruct over Groq Cloud to extract text structures natively to JSON arrays without regex string degradation.
 
-### 🕵️‍♂️ Anti-Detection & Humanized Behavior: 
-Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.
+🕵️‍♂️ Anti-Detection & Humanized Behavior: Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.
 
 🖱️ Cubic Bézier Cursor Engine: Mouse paths are generated using non-linear math steps with natural hover micro-wiggles and varied click-hold durations to mirror organic human motor control.
 
-### ✂️ Hardware-Bounded Crop Matrix: 
-Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.
+✂️ Hardware-Bounded Crop Matrix: Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.
 
 📉 PID-Inspired Proportional Sleep Loops: Feeds parsed webpage lateness statistics directly back into a dynamic feedback tracker to predict server generation updates and optimize sleep cycles.
 
-### 🚨 Simultaneous Background Alarm Routing: 
-Multi-threaded execution pipelines that concurrently fire localized motherboard winsound frequencies, instantiate target user authentication page wrappers, and push formatted HTML updates via the Telegram Bot API.
+🚨 Simultaneous Background Alarm Routing: Multi-threaded execution pipelines that concurrently fire localized motherboard winsound frequencies, instantiate target user authentication page wrappers, and push formatted HTML updates via the Telegram Bot API.
 
 
 ## 🗺️ System Architecture Overview
@@ -73,16 +66,6 @@ The system is split into three modular logical layers to protect consumer hardwa
                                                                                 │
                                                                                 ▼
 [High-Intensity Simultaneous Alarm] <- [Dynamic Sleep Optimization] <- [Groq LPU Vision Engine]
-
-
-### Ingestion Layer (app.py / humanize_browsing.py): 
-Drives Microsoft Edge and Google Chrome using native hardware cursor mimicking wrappers (Cubic Bézier trajectory interpolation) to bypass Cloudflare and perimeter anti-bot firewalls.
-
-### Processing Layer (models.py / screenshot.py): 
-Crops standard 1080p display bounds directly down to the targeted DOM coordinate element matrix to safeguard local VRAM allocations before converting to localized Base64 payload URIs.
-
-### Analysis & Alerting Layer (alarm.py / dynamic_sleep.py): 
-Passes vectorized frames to high-speed cloud infrastructures, converts extracted tables to structured operational DataFrames, evaluates numeric threshold configurations, and simultaneously executes visual, structural, audio, and network-packet push alerts.
 
 
 ## 🚀 Installation & Setup
@@ -109,7 +92,8 @@ MY_PERSONAL_CHAT_ID=YOUR_TELEGRAM_TARGET_CHAT_ID_HERE
 
 ## 🛠️ Deep Module Breakdown
 
-### 🤖 1. Humanized Browsing Core (humanize_browsing.py)
+🤖 1. Humanized Browsing Core (humanize_browsing.py)
+
 Bypasses advanced fingerprinting via raw hardware emulation:
 
 Mathematical Pathing: Uses randomized sub-interval control paths based on the following parameterized matrix to draw smooth mouse coordinates:
@@ -121,7 +105,7 @@ Session Integrity Control: Manipulates local JSON state preferences directly on 
 Thread-Safe Input Locks: Wraps hardware-level cursor calls inside an atomic mouse_lock = Lock() to prevent asynchronous UI workflows from clashing during simultaneous script runs.
 
 
-### ✂️ 2. Memory Optimization Engine (screenshot.py)
+✂️ 2. Memory Optimization Engine (screenshot.py)
 Isolates tabular regions before processing:
 
 VRAM Defense Matrix: Shrinks the footprint of standard high-resolution screenshot images down to exact analytical boundaries.
@@ -129,7 +113,7 @@ VRAM Defense Matrix: Shrinks the footprint of standard high-resolution screensho
 Defensive Fallbacks: Includes built-in evaluation layers that catch zero-byte corruptions or calculation collapses, defaulting back to safely managed container limits rather than throwing unhandled exceptions.
 
 
-### 🧠 3. Closed-Loop Timing Calibration Engine (dynamic_sleep.py)
+🧠 3. Closed-Loop Timing Calibration Engine (dynamic_sleep.py)
 
 Protects against anti-bot triggers using a predictive time-series model:
 
