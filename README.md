@@ -65,8 +65,9 @@ Instead of maintaining a long-lived browser session, each monitoring cycle is ex
 At the end of each execution loop, the browser process is forcibly terminated to ensure a clean slate for the next cycle:
 
 [Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]                           
-                                                                                         │
-                                              [Scan Loop n+1] ◄──────────────────────────┘
+                                                                                                      │
+                                                           [Scan Loop n+1] ◄──────────────────────────┘
+
 
 
 
@@ -83,15 +84,21 @@ At the end of each execution loop, the browser process is forcibly terminated to
 
 ## ✨ Features
 
+
 ⚡ Vision-Based Table Extraction: Uses an LLM-assisted vision/OCR pipeline (via Groq-hosted models such as llama-4-scout-17b-16e-instruct) to interpret screenshot-based Visa scheduling pages and extract structured slot availability information where possible.
+
 
 🕵️‍♂️ Automation Execution Controls: Uses browser automation with subprocess-driven launches and UI interaction hooks (pyautogui) combined with configurable runtime flags to manage automated execution behavior in a controlled desktop environment.
 
+
 🖱️ Humanized Cursor Movement Engine: Mouse movement is simulated using cubic Bézier curve interpolation with randomized control points and micro-variations in speed and hover timing to reduce mechanical movement patterns during UI interaction.
+
 
 ✂️ Fixed Region Screen Sampling: The system operates on a predefined or calibrated screen region to capture relevant portions of the Visa scheduling interface, ensuring consistent input frames for downstream extraction logic.
 
+
 📉 Adaptive Sleep Feedback Loop: Implements a heuristic timing adjustment mechanism based on observed delays between interface updates, using historical cycle latency to adjust polling intervals dynamically.
+
 
 🚨 Multi-Channel Alert System: When a valid slot availability signal is detected, the system triggers concurrent alert outputs including a local system sound alarm (winsound on Windows where applicable) and a Telegram Bot API notification to a configured personal chat.
 
