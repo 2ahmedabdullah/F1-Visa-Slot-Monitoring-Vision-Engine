@@ -23,9 +23,9 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
 ### 2. 🧊 The Anti-Entropy Claim (State Space Reset)
 The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
 
-[Scan Loop n] ──► Wipes Preferences ──► Launches Process ──► Kills Process ──► [Zero-State Sandbox]
+[Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]
                                                                                       │
-[Scan Loop n+1] ◄─────────────────────────────────────────────────────────────────────┘
+                [Scan Loop n+1] ◄─────────────────────────────────────────────────────┘
 
 
 ### 3. ⚡Latency: 
@@ -41,23 +41,25 @@ Engineered specifically to tackle sudden, high-stakes bulk drops that notoriousl
 
 ## ✨ Features
 
-# ⚡ LPU-Accelerated Table OCR: 
+### ⚡ LPU-Accelerated Table OCR: 
 Drop-in vision engine using meta-llama/llama-4-scout-17b-16e-instruct over Groq Cloud to extract text structures natively to JSON arrays without regex string degradation.
 
-# 🕵️‍♂️ Anti-Detection & Humanized Behavior: 
-Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.🖱️ Cubic Bézier Cursor Engine: Mouse paths are generated using non-linear math steps with natural hover micro-wiggles and varied click-hold durations to mirror organic human motor control.
+### 🕵️‍♂️ Anti-Detection & Humanized Behavior: 
+Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.
+🖱️ Cubic Bézier Cursor Engine: Mouse paths are generated using non-linear math steps with natural hover micro-wiggles and varied click-hold durations to mirror organic human motor control.
 
-# ✂️ Hardware-Bounded Crop Matrix: 
-Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.📉 PID-Inspired Proportional Sleep Loops: Feeds parsed webpage lateness statistics directly back into a dynamic feedback tracker to predict server generation updates and optimize sleep cycles.
+### ✂️ Hardware-Bounded Crop Matrix: 
+Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.
+📉 PID-Inspired Proportional Sleep Loops: Feeds parsed webpage lateness statistics directly back into a dynamic feedback tracker to predict server generation updates and optimize sleep cycles.
 
-# 🚨 Simultaneous Background Alarm Routing: 
+### 🚨 Simultaneous Background Alarm Routing: 
 Multi-threaded execution pipelines that concurrently fire localized motherboard winsound frequencies, instantiate target user authentication page wrappers, and push formatted HTML updates via the Telegram Bot API.
 
 
 ## 🗺️ System Architecture Overview
 The system is split into three modular logical layers to protect consumer hardware memory constraints while maximizing processing throughput:
 
-[Live Portal UI] -------> [Stealth Browser Orchestration] -----------> [Raw VRAM Crop Matrix] 
+[Live Portal UI] ----> [Stealth Browser Orchestration] ---------> [Raw VRAM Crop Matrix] 
                                                                                 │
                                                                                 ▼
 [High-Intensity Simultaneous Alarm] <- [Dynamic Sleep Optimization] <- [Groq LPU Vision Engine]
@@ -104,8 +106,6 @@ Mathematical Pathing: Uses randomized sub-interval control paths based on the fo
 
 $$x(t) = (1-t)^3 x_0 + 3(1-t)^2 t x_1 + 3(1-t) t^2 x_2 + t^3 x_3$$
 
-[fromula.png]
-
 Session Integrity Control: Manipulates local JSON state preferences directly on disk before boot. This forcefully sets exit_type to "Normal" and exited_cleanly to True, permanently supressing Chromium's "Restore Pages" crash notice bubble which offsets target click coordinates.
 
 Thread-Safe Input Locks: Wraps hardware-level cursor calls inside an atomic mouse_lock = Lock() to prevent asynchronous UI workflows from clashing during simultaneous script runs.
@@ -128,16 +128,19 @@ Chronological Anomaly Layer: Monitors structural data inconsistencies (such as d
 Multi-Tiered Pattern Recognition: The engine looks back into historical generation timestamps using a 3-stamp and 4-stamp sliding window to map current activity states into specific tracking series:
 
 Series 1: Routine Baseline (10-10-10-8-8) / Reset Trigger Loop (8-8-8-8)
+
 Series 2: Long-Run Cruise Control (6-8-6-8)
+
 Series 3: High-Volume Processing Loop (6-6-6-6)
+
 Series 4: Peak Active Polling (6-4-6-4)
+
 Series 5: Sustained High-Velocity Polling Loop (4-4-4-4)
 
 Moving-Average Feedback Loop: If the systemic average lateness calculation drops below target constraints, the scheduler computes a laggard error penalty to advance the system execution cycle:
 
 $$Sleep_{Calibrated} = (Interval_{Target} - Age_{Data} - Lead_{Hardware}) - Penalty_{Lateness}$$
 
-[formula2.png]
 
 ## 📊 Run-Time Diagnostics Matrix
 When fully functional, your terminal interface logs diagnostic analytics tracking lookups precisely like this:
