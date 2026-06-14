@@ -31,6 +31,7 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
 2. 🛑 The Safety Valve Override ($E_{debt} \le 0$): If the script wakes up so fast that it runs before the server updates target_sleep_minutes_temp drops below 2.0 minutes. If the data isn't late, the engine activates its safety valve, expanding the sleep window out by exactly one full server cycle ($+next\_interval\_mins$) to dodge aggressive IP rate-limiting blocks.
 
 
+
 🧊 The Anti-Entropy Claim (State Space Reset): The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
 
 [Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]                           
@@ -38,9 +39,14 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
                                      [Scan Loop n+1] ◄──────────────────────────┘
 
 
+
 ⚡Latency: The entire pipeline executes 24x7 in under 20 seconds. It undergoes a rapid LLM Vision check; if the optimization logic confirms a bulk slot drop, it immediately triggers the laptop hardware alarm and simultaneously dispatches a priority notification to the user's personal Telegram.
 
+
+
 💰 Zero Fee: Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Groq's high-speed API endpoints to process thousands of community interactions daily without premium SaaS subscription fees.
+
+
 
 🕞 24x7: Engineered specifically to tackle sudden, high-stakes bulk drops that notoriously occur in the dead of night (2 AM, 3 AM, or later), this system acts as your tireless digital sentinel.
 
