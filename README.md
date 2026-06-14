@@ -5,7 +5,7 @@ An automated, high-frequency, anti-detection monitoring pipeline designed to tra
 
 Below are mobile screenshots demonstrating the pipeline in action. When a high-priority consensus is verified by the system, it immediately pushes alerts directly to the personal Telegram Bot with instant access links.
 
-![Personal Telegram Bot Slot Alert][img.png]
+![Personal Telegram Bot Slot Alert](img.png)
 
 
 ## 🛡️ The Claim
