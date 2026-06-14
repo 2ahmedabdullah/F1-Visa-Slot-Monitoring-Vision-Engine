@@ -1,6 +1,12 @@
 # US F1 Visa Slot Sniper Radar 🚀🎯
 An automated, high-frequency, anti-detection monitoring pipeline designed to track US F1 Visa slot availability data across multiple Visa Application Centers (VACs). By leveraging automated browser orchestration, hardware cursor mapping, and cloud-hosted LPUs via Meta Llama-4 Vision, this system extracts tabular data from live dashboard states, handles anti-ban firewall protection via adaptive PI loop feedback, and triggers multi-channel alarms when target slot thresholds are reached.
 
+## 📱 Personalised Alert to Telegram Chat (Mobile Screenshots)
+
+Below are mobile screenshots demonstrating the pipeline in action. When a high-priority consensus is verified by the system, it immediately pushes alerts directly to the personal Telegram Bot with instant access links.
+
+[img.png]
+
 
 ## 🛡️ The Claim
 ### 1. 📉 Mathematical Proof of Convergence (Feedback Latency Loop)
@@ -25,7 +31,7 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
 ### 2. 🧊 The Anti-Entropy Claim (State Space Reset)
 The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
 
-[Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]
+[Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]                           
                                                                                       │
                 [Scan Loop n+1] ◄─────────────────────────────────────────────────────┘
 
@@ -48,10 +54,12 @@ Drop-in vision engine using meta-llama/llama-4-scout-17b-16e-instruct over Groq 
 
 ### 🕵️‍♂️ Anti-Detection & Humanized Behavior: 
 Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.
+
 🖱️ Cubic Bézier Cursor Engine: Mouse paths are generated using non-linear math steps with natural hover micro-wiggles and varied click-hold durations to mirror organic human motor control.
 
 ### ✂️ Hardware-Bounded Crop Matrix: 
 Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.
+
 📉 PID-Inspired Proportional Sleep Loops: Feeds parsed webpage lateness statistics directly back into a dynamic feedback tracker to predict server generation updates and optimize sleep cycles.
 
 ### 🚨 Simultaneous Background Alarm Routing: 
