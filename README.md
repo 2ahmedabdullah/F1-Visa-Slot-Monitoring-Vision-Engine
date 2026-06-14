@@ -10,7 +10,8 @@ Below are mobile screenshots demonstrating the pipeline in action. When a high-p
 
 ## 🛡️ The Claim
 
-📉 Mathematical Proof of Convergence (Feedback Latency Loop)
+📉 Mathematical Proof of Convergence (Feedback Latency Loop):
+
 The system operates on the core axiom that the target server’s internal update scheduler follows deterministic, discrete time-series waves ($W$). The closed-loop engine asserts that by calculating the historical progression of table generation gaps ($d_1, d_2$), the exact delta to the subsequent release wave ($T_{next}$) can be bounded and targeted.When an external factor introduces noise, such as regional content delivery network (CDN) caching latency or a local execution delay ($Lag_{capture}$), the system establishes an error debt metric ($E_{debt}$). By applying this feedback loop directly as a proportional penalty modifier against the target pattern interval, the engine continuously recalibrates itself. 
 
 The engine measures the Data Age ($Age_{data}$) at the exact moment of text extraction. It compares this against a standardized Target Lateness Floor ($\tau = 2.0\text{ minutes}$). The moving average of this error over the last three runs creates our Proportional Error Debt ($E_{debt}$):
@@ -25,9 +26,9 @@ If $E_{debt} > 0$, the engine calculates a predictive interval ($Interval_{targe
 
 $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{debt} \times 60)$$
 
-🏎️ The Catch-Up Sprint ($E_{debt} > 0$): The script detects that data is aging. It shaves seconds or minutes off its sleep pool, intentionally launching the next browser window early to catch the next server release wave at the exact moment of injection.
+1. 🏎️ The Catch-Up Sprint ($E_{debt} > 0$): The script detects that data is aging. It shaves seconds or minutes off its sleep pool, intentionally launching the next browser window early to catch the next server release wave at the exact moment of injection.
 
-🛑 The Safety Valve Override ($E_{debt} \le 0$): If the script wakes up so fast that it runs before the server updates target_sleep_minutes_temp drops below 2.0 minutes. If the data isn't late, the engine activates its safety valve, expanding the sleep window out by exactly one full server cycle ($+next\_interval\_mins$) to dodge aggressive IP rate-limiting blocks.
+2. 🛑 The Safety Valve Override ($E_{debt} \le 0$): If the script wakes up so fast that it runs before the server updates target_sleep_minutes_temp drops below 2.0 minutes. If the data isn't late, the engine activates its safety valve, expanding the sleep window out by exactly one full server cycle ($+next\_interval\_mins$) to dodge aggressive IP rate-limiting blocks.
 
 
 🧊 The Anti-Entropy Claim (State Space Reset): The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
