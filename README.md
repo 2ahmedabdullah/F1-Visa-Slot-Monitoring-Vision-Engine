@@ -1,5 +1,6 @@
-# US F1 Visa Slot Sniper Radar 🚀🎯
-An automated, high-frequency, anti-detection monitoring pipeline designed to track US F1 Visa slot availability data across multiple Visa Application Centers (VACs). By leveraging automated browser orchestration, hardware cursor mapping, and cloud-hosted LPUs via Meta Llama-4 Vision, this system extracts tabular data from live dashboard states, handles anti-ban firewall protection via adaptive PI loop feedback, and triggers multi-channel alarms when target slot thresholds are reached.
+# US F1 Visa Slot Monitoring System 🚀🎯
+An automated monitoring pipeline designed to track US F1 Visa appointment slot availability across multiple Visa Application Centers (VACs). The system periodically checks official scheduling interfaces, processes updates from live data sources, and triggers alerts when changes in availability are detected.
+It combines browser automation, structured message filtering, vision-based extraction and OCR pipeline to interpret Visa scheduling interface screenshots, extract tabular slot availability data, and reduce false positives caused by transient UI states during periodic page refreshes.
 
 ## 📱 Personalised Alert to Telegram Chat (Mobile Screenshots)
 
@@ -10,38 +11,66 @@ Below are mobile screenshots demonstrating the pipeline in action. When a high-p
 
 ## 🛡️ The Claim
 
-📉 Mathematical Proof of Convergence (Feedback Latency Loop):
+📉 Adaptive Timing Feedback Loop (Heuristic Model)
 
-The system operates on the core axiom that the target server’s internal update scheduler follows deterministic, discrete time-series waves ($W$). The closed-loop engine asserts that by calculating the historical progression of table generation gaps ($d_1, d_2$), the exact delta to the subsequent release wave ($T_{next}$) can be bounded and targeted.When an external factor introduces noise, such as regional content delivery network (CDN) caching latency or a local execution delay ($Lag_{capture}$), the system establishes an error debt metric ($E_{debt}$). By applying this feedback loop directly as a proportional penalty modifier against the target pattern interval, the engine continuously recalibrates itself. 
+The system uses a lightweight feedback mechanism to adjust its polling interval based on observed delays in data freshness across previous execution cycles.
 
-The engine measures the Data Age ($Age_{data}$) at the exact moment of text extraction. It compares this against a standardized Target Lateness Floor ($\tau = 2.0\text{ minutes}$). The moving average of this error over the last three runs creates our Proportional Error Debt ($E_{debt}$):
+Instead of assuming fixed refresh timing, it treats observed update gaps as a noisy signal and continuously adapts its sleep interval to better align with detected update patterns.
 
-This mathematically guarantees that the execution runtime will converge precisely with the server's update horizon:
+Let:
 
-$$T_{run} \to T_{drop} \quad \text{as} \quad E_{debt} \to 0$$
+- $Age_{data}$ = time elapsed since last observed UI update  
+- $\tau$ = target freshness threshold (baseline latency tolerance)  
+- $E_{debt}$ = moving average error over the last $n$ cycles  
 
-$$E_{debt} = \left( \frac{1}{3} \sum_{i=1}^{3} Age_{data, i} \right) - \tau$$
+We define:
 
-If $E_{debt} > 0$, the engine calculates a predictive interval ($Interval_{target}$) based on your 3-stamp and 4-stamp gap decoders, subtracts a randomized anti-bot pre-fire buffer ($Lead_{hardware}$), and applies the error debt as a time-shaving penalty:
+$$
+E_{debt} = \left( \frac{1}{n} \sum_{i=1}^{n} Age_{data,i} \right) - \tau
+$$
 
-$$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{debt} \times 60)$$
+This error term is used only as a **heuristic adjustment factor**, not a guaranteed predictor.
 
-1. 🏎️ The Catch-Up Sprint ($E_{debt} > 0$): The script detects that data is aging. It shaves seconds or minutes off its sleep pool, intentionally launching the next browser window early to catch the next server release wave at the exact moment of injection.
+🌙 Adaptive sleep behavior
 
-2. 🛑 The Safety Valve Override ($E_{debt} \le 0$): If the script wakes up so fast that it runs before the server updates target_sleep_minutes_temp drops below 2.0 minutes. If the data isn't late, the engine activates its safety valve, expanding the sleep window out by exactly one full server cycle ($+next\_interval\_mins$) to dodge aggressive IP rate-limiting blocks.
+The system updates its next execution interval as:
+
+$$
+Sleep_{next} = Interval_{observed} - \alpha \cdot E_{debt}
+$$
+
+Where:
+- $\alpha$ is a scaling factor controlling responsiveness
+- adjustments are clamped to prevent over-correction
+
+⭐ Behavioral modes
+
+1. **Catch-up mode ($E_{debt} > 0$)**  
+   If observed data is consistently delayed, the system gradually reduces its sleep interval to reduce detection latency and improve alignment with update cycles.
+
+2. **Stabilization mode ($E_{debt} \le 0$)**  
+   If executions are too frequent relative to updates, the system increases its sleep interval to avoid unnecessary polling and reduce rate pressure.
 
 
+🧊 Stateless Execution Model (Process Reset Strategy)
 
-🧊 The Anti-Entropy Claim (State Space Reset): The engine claims that state isolation is the only permanent fix for memory entropy. Instead of keeping a single browser instance open and running, the system treats every individual scan as an ephemeral, isolated container. By combining a hard process termination (taskkill /f /im msedge.exe) at the end of every loop with an on-disk JSON patcher (force_clean_session_state), it wipes out structural drift.
+The system is designed around a stateless execution loop to reduce accumulation of browser-side artifacts such as cached UI state, session persistence, and UI drift across repeated scans.
+
+Instead of maintaining a long-lived browser session, each monitoring cycle is executed in isolation:
+
+- A fresh browser process is launched per scan
+- UI state is not preserved between runs
+- Temporary session artifacts are cleared at the end of each cycle
+
+At the end of each execution loop, the browser process is forcibly terminated to ensure a clean slate for the next cycle:
 
 [Scan Loop n]─► Wipes Preferences ─► Launches Process─► Kills Process─► [Zero-State Sandbox]                           
-                                                                                │
-                                     [Scan Loop n+1] ◄──────────────────────────┘
+                                                                                         │
+                                              [Scan Loop n+1] ◄──────────────────────────┘
 
 
 
 ⚡Latency: The entire pipeline executes 24x7 in under 20 seconds. It undergoes a rapid LLM Vision check; if the optimization logic confirms a bulk slot drop, it immediately triggers the laptop hardware alarm and simultaneously dispatches a priority notification to the user's personal Telegram.
-
 
 
 💰 Zero Fee: Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Groq's high-speed API endpoints to process thousands of community interactions daily without premium SaaS subscription fees.
@@ -54,17 +83,17 @@ $$Sleep_{calibrated} = (Interval_{target} - Age_{data} - Lead_{hardware}) - (E_{
 
 ## ✨ Features
 
-⚡ LPU-Accelerated Table OCR: Drop-in vision engine using meta-llama/llama-4-scout-17b-16e-instruct over Groq Cloud to extract text structures natively to JSON arrays without regex string degradation.
+⚡ Vision-Based Table Extraction: Uses an LLM-assisted vision/OCR pipeline (via Groq-hosted models such as llama-4-scout-17b-16e-instruct) to interpret screenshot-based Visa scheduling pages and extract structured slot availability information where possible.
 
-🕵️‍♂️ Anti-Detection & Humanized Behavior: Patched profile preference overrides that kill restoration bubbles and automate headless runtime instances cleanly. Implements runtime flags like --disable-blink-features=AutomationControlled to hide automation signatures.
+🕵️‍♂️ Automation Execution Controls: Uses browser automation with subprocess-driven launches and UI interaction hooks (pyautogui) combined with configurable runtime flags to manage automated execution behavior in a controlled desktop environment.
 
-🖱️ Cubic Bézier Cursor Engine: Mouse paths are generated using non-linear math steps with natural hover micro-wiggles and varied click-hold durations to mirror organic human motor control.
+🖱️ Humanized Cursor Movement Engine: Mouse movement is simulated using cubic Bézier curve interpolation with randomized control points and micro-variations in speed and hover timing to reduce mechanical movement patterns during UI interaction.
 
-✂️ Hardware-Bounded Crop Matrix: Dynamically calculates a safe pixel crop bounding window ($Left: 10\%$, $Top: 25\%$, $Right: 90\%$, $Bottom: 95\%$) protecting downstream parsers from dimensional failure or edge corruption.
+✂️ Fixed Region Screen Sampling: The system operates on a predefined or calibrated screen region to capture relevant portions of the Visa scheduling interface, ensuring consistent input frames for downstream extraction logic.
 
-📉 PID-Inspired Proportional Sleep Loops: Feeds parsed webpage lateness statistics directly back into a dynamic feedback tracker to predict server generation updates and optimize sleep cycles.
+📉 Adaptive Sleep Feedback Loop: Implements a heuristic timing adjustment mechanism based on observed delays between interface updates, using historical cycle latency to adjust polling intervals dynamically.
 
-🚨 Simultaneous Background Alarm Routing: Multi-threaded execution pipelines that concurrently fire localized motherboard winsound frequencies, instantiate target user authentication page wrappers, and push formatted HTML updates via the Telegram Bot API.
+🚨 Multi-Channel Alert System: When a valid slot availability signal is detected, the system triggers concurrent alert outputs including a local system sound alarm (winsound on Windows where applicable) and a Telegram Bot API notification to a configured personal chat.
 
 
 ## 🗺️ System Architecture Overview
@@ -102,32 +131,35 @@ MY_PERSONAL_CHAT_ID=YOUR_TELEGRAM_TARGET_CHAT_ID_HERE
 
 🤖 1. Humanized Browsing Core (humanize_browsing.py)
 
-Bypasses advanced fingerprinting via raw hardware emulation:
+Implements human-like interaction patterns for UI automation using randomized motion curves and controlled timing variation during cursor movement.
 
-Mathematical Pathing: Uses randomized sub-interval control paths based on the following parameterized matrix to draw smooth mouse coordinates:
+Mathematical Pathing: Uses cubic Bézier interpolation to generate smooth cursor trajectories between points, reducing linear motion artifacts during automated UI interaction:
 
 $$x(t) = (1-t)^3 x_0 + 3(1-t)^2 t x_1 + 3(1-t) t^2 x_2 + t^3 x_3$$
 
-Session Integrity Control: Manipulates local JSON state preferences directly on disk before boot. This forcefully sets exit_type to "Normal" and exited_cleanly to True, permanently supressing Chromium's "Restore Pages" crash notice bubble which offsets target click coordinates.
+Session State Handling: Manages browser session consistency by controlling local state persistence and ensuring clean startup conditions between runs, reducing UI inconsistencies caused by leftover session artifacts or restore prompts.
 
-Thread-Safe Input Locks: Wraps hardware-level cursor calls inside an atomic mouse_lock = Lock() to prevent asynchronous UI workflows from clashing during simultaneous script runs.
+Thread-Safe Input Control: Uses mutex-based locking (mouse_lock = Lock()) to ensure that concurrent automation routines do not interfere with shared hardware input operations.
 
 
 ✂️ 2. Memory Optimization Engine (screenshot.py)
-Isolates tabular regions before processing:
 
-VRAM Defense Matrix: Shrinks the footprint of standard high-resolution screenshot images down to exact analytical boundaries.
+Handles screenshot acquisition and preprocessing to isolate relevant UI regions for downstream analysis.
 
-Defensive Fallbacks: Includes built-in evaluation layers that catch zero-byte corruptions or calculation collapses, defaulting back to safely managed container limits rather than throwing unhandled exceptions.
+Region-Based Capture: Focuses on predefined or calibrated screen regions to reduce unnecessary image data and improve extraction consistency.
+
+Resource Safety Handling: Includes fallback handling for invalid or corrupted capture states, ensuring the system gracefully recovers instead of failing during edge-case screenshot errors.
 
 
 🧠 3. Closed-Loop Timing Calibration Engine (dynamic_sleep.py)
 
-Protects against anti-bot triggers using a predictive time-series model:
+Implements a heuristic feedback-based scheduling system that adjusts polling intervals based on observed latency between UI state changes.
 
-Chronological Anomaly Layer: Monitors structural data inconsistencies (such as data-age drops or chronological inversions due to server-side rollbacks). It dynamically catches these issues and maps them onto a standardized, virtual baseline progression.
+Temporal Tracking: Maintains a rolling history of observed update delays (data-age values) to estimate recent system responsiveness.
 
-Multi-Tiered Pattern Recognition: The engine looks back into historical generation timestamps using a 3-stamp and 4-stamp sliding window to map current activity states into specific tracking series:
+Sliding Window Analysis: Uses short-term historical windows (e.g., last 3–4 cycles) to smooth noisy timing variations and prevent overreaction to single-cycle anomalies.
+
+Adaptive Sleep Adjustment: The scheduler modifies its next execution interval based on observed delay trends:
 
 Series 1: Routine Baseline (10-10-10-8-8) / Reset Trigger Loop (8-8-8-8)
 
@@ -142,6 +174,14 @@ Series 5: Sustained High-Velocity Polling Loop (4-4-4-4)
 Moving-Average Feedback Loop: If the systemic average lateness calculation drops below target constraints, the scheduler computes a laggard error penalty to advance the system execution cycle:
 
 $$Sleep_{Calibrated} = (Interval_{Target} - Age_{Data} - Lead_{Hardware}) - Penalty_{Lateness}$$
+
+Where:
+
+Age_Data represents observed staleness of the last capture
+Lead_Hardware represents intentional execution overhead buffer
+Penalty_Latency is a damping factor derived from recent delay history
+
+This produces a bounded adaptive polling system that reacts to changing UI update frequency without assuming fixed periodic behavior.
 
 
 ## 📊 Run-Time Diagnostics Matrix
