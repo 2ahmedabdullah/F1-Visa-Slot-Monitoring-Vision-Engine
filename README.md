@@ -97,7 +97,7 @@ At the end of each execution loop, the browser process is forcibly terminated to
 
 
 
-🕞 24x7: Engineered specifically to tackle sudden, high-stakes bulk drops that notoriously occur in the dead of night (2 AM, 3 AM, or later), this system acts as your tireless digital sentinel.
+🕞 24x7: Engineered specifically to tackle sudden, high-stakes bulk drops that notoriously occur in the dead of night (2 AM, 3 AM, or later), this system acts as a tireless digital sentinel.
 
 
 
@@ -210,7 +210,8 @@ This produces a bounded adaptive polling system that reacts to changing UI updat
 
 
 ## 📊 Run-Time Diagnostics Matrix
-When fully functional, your terminal interface logs diagnostic analytics tracking lookups precisely like this:
+Terminal interface logs diagnostic analytics tracking lookups:
+
 
 ![Run-Time Diagnostics Matrix](img2.png)
 
