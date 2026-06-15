@@ -20,6 +20,7 @@ Through strict pixel cropping matrices (optimize_screenshot_for_vram) and optimi
 
 2. Model Inference Window: ~20.19 seconds to capture, extract, clean, and validate complex tabular JSON streams via qwen2.5vl:3b.
 
+3. Standard CPU Fallback Inference: ~150+ seconds (over 2.5 minutes of un-optimized sequential execution, heavily risking automated session timeouts and thread lockups).
 
 ## 📱 Personalised Alert to Telegram Chat (Mobile Screenshots)
 
@@ -245,7 +246,7 @@ Elapsed time in Generation: 0:00:20.195767
    • Rolling Hourly Scans    : 6 hits in last 60m
    • Last Table Gen Time     : 04:32 PM
    • Current Data Age        : 6.63 minutes old
-   • Next Predicted Drop      : +10 minutes
+   • Next Refresh Estimate   : +10 minutes
    • Active Feedback Shift   : Shaved 0.00 seconds
    • PURE SLEEP CALIBRATION  : 112.20 seconds
 ⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡
