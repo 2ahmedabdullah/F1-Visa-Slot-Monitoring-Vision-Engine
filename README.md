@@ -3,6 +3,9 @@ An automated monitoring pipeline designed to track US F1 Visa appointment slot a
 
 What sets this pipeline apart is its local, vision-based approach. Instead of fragile, text-based HTML scrapers that shatter with every UI updates, this system captures visual screenshots and runs an edge-optimized Vision-LLM parsing pipeline completely offline on consumer laptop hardware.
 
+
+![US F1 Visa Slot Monitoring System](cropped_visa_table.png)
+
 ## 🛠️ Hardware Constraints & Production Telemetry
 The entire data parsing and decision matrix is engineered to run locally under severe memory and hardware limitations:
 
@@ -94,7 +97,7 @@ At the end of each execution loop, the browser process is forcibly terminated to
 ⚡Latency: The entire pipeline executes 24x7 in under 20 seconds. It undergoes a rapid LLM Vision check; if the optimization logic confirms a bulk slot drop, it immediately triggers the laptop hardware alarm and simultaneously dispatches a priority notification to the user's personal Telegram.
 
 
-💰 Zero Fee: Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Ollam and Native 6 GB VRAM to process thousands of community interactions daily without premium SaaS subscription fees.
+💰 Zero Fee: Leverages an ultra-low-cost (virtually $0) infrastructure utilizing Ollam and Native 6 GB VRAM without premium SaaS subscription fees.
 
 
 
