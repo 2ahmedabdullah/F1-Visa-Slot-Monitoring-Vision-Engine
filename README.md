@@ -4,7 +4,6 @@ An automated monitoring pipeline designed to track US F1 Visa appointment slot a
 What sets this pipeline apart is its local, vision-based approach. Instead of fragile, text-based HTML scrapers that shatter with every UI updates, this system captures visual screenshots and runs an edge-optimized Vision-LLM parsing pipeline completely offline on consumer laptop hardware.
 
 
-![US F1 Visa Slot Monitoring System](cropped_visa_table.png)
 
 ## 🛠️ Hardware Constraints & Production Telemetry
 The entire data parsing and decision matrix is engineered to run locally under severe memory and hardware limitations:
