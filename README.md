@@ -5,6 +5,7 @@ What sets this pipeline apart is its local, vision-based approach. Instead of fr
 
 
 
+
 ## 🛠️ Hardware Constraints & Production Telemetry
 The entire data parsing and decision matrix is engineered to run locally under severe memory and hardware limitations:
 
@@ -137,7 +138,7 @@ The system is split into three modular logical layers to protect consumer hardwa
 ## 🚀 Installation & Setup
 
 1. Environment Configurations
-Clone this repository directly into your local machine environment directory, then initialize and activate your virtual isolation workspace:
+Clone this repository directly into the local machine environment directory, then initialize and activate the virtual isolation workspace:
 
 ```
 python -m venv f1_env
@@ -150,8 +151,8 @@ pip install -r requirements.txt
 2. Environment Variables (.env)
 Create a standard .env configuration file inside the root execution hierarchy directory path:
 ```
-ALERT_BOT_TOKEN=1234567890:ABC-Your Telegram Alert Bot Token Here
-MY_PERSONAL_CHAT_ID=YOUR_TELEGRAM_TARGET_CHAT_ID_HERE
+ALERT_BOT_TOKEN=1234567890:ABC-the Telegram Alert Bot Token Here
+MY_PERSONAL_CHAT_ID=the_TELEGRAM_TARGET_CHAT_ID_HERE
 ```
 
 
