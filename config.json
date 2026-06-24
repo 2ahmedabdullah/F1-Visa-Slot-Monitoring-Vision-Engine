@@ -1,0 +1,37 @@
+{
+"PARAMS": {
+            "model": "qwen2.5vl:3b",  
+            "temperature": 0.0,      
+            "num_predict": 2048,      
+            "top_k": 1,               
+            "top_p": 0.1,              
+            "num_ctx": 4096,          
+            "num_gpu": -1,              
+            "f16_kv": true
+          },
+
+"JSON_SCHEMA" :{
+                "type": "object",
+                "properties": {
+                    "visa_rows": {
+                        "type": "array",
+                        "items": {
+                                "type": "object",
+                                "properties": {
+                                                "Visa Location": {"type": "string"},
+                                                "Visa Type": {"type": "string"},
+                                                "Earliest Date": {"type": "string"},
+                                                "Slots on Earliest Date": {"type": "string"},
+                                                "Total Dates Available": {"type": "string"},
+                                                "Last Seen At": {"type": "string"},
+                                                "Relative Time": {"type": "string"}
+                                                },
+                                "required": ["Visa Location", "Visa Type", "Earliest Date"]
+                                }
+                                },
+                                "footer_timestamp": {"type": "string"}
+                            },
+                            "required": ["visa_rows", "footer_timestamp"]
+            }
+
+}
