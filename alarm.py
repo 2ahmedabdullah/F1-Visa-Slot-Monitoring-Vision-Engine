@@ -8,8 +8,8 @@ import requests
 from datetime import datetime
 from humanize_browsing import run_chrome_pipeline
 
-ALERT_BOT_TOKEN = os.getenv("ALERT_BOT_TOKEN", "YOUR_PERSONAL_BOT_TOKEN")       
-MY_PERSONAL_CHAT_ID = os.getenv("MY_PERSONAL_CHAT_ID", "YOUR_PERSONAL_CHAT_ID")    
+ALERT_BOT_TOKEN = os.getenv("ALERT_BOT_TOKEN", "_PERSONAL_BOT_TOKEN")       
+MY_PERSONAL_CHAT_ID = os.getenv("MY_PERSONAL_CHAT_ID", "_PERSONAL_CHAT_ID")    
 
 
 # ==========================================
@@ -46,7 +46,7 @@ def trigger_drop_alarm(row=None):
                 f"🔢 <b>Slots on Date:</b> {row['Slots on Earliest Date']}\n"
                 f"📊 <b>Total Active Dates:</b> {row['Total Dates Available']}\n"
                 f"🕒 <b>Last Seen:</b> {row['Relative Time']}\n\n"
-                f"🚀 Log into your portal immediately!"
+                f"🚀 Log into  portal immediately!"
             )
         else:
             msg = "🔥 No VAC drop has been detected!"
